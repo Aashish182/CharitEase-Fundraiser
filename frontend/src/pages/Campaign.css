@@ -17,6 +17,7 @@
     max-height: 24rem;
     object-fit: cover;
     border-radius: 0.5rem;
+    border: 2px solid #2ebc62;
 }
 
 .campaign-left{
@@ -56,10 +57,12 @@
 .tab-button {
     padding: 0.5rem;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .active-tab {
-    border-bottom: 2px solid #059669;
+    border-bottom: 2px solid #2ebc62;
+    cursor: pointer;
 }
 
 .tab-count {
@@ -104,7 +107,7 @@
 
 .raised-amount {
     font-size: 2rem;
-    color: #059669;
+    color: #2ebc62;
 }
 
 .raised-sub {
@@ -127,6 +130,7 @@
 
 .campaign-stats {
     display: grid;
+    padding-top: 15px;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
 }

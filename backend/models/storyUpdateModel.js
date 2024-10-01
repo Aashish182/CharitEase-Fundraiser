@@ -20,6 +20,11 @@ const CampaignUpdateSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+},{
+  timestamps: true
 });
 
-module.exports = mongoose.model("CampaignUpdate", CampaignUpdateSchema);
+const storyUpdateModel = mongoose.model("CampaignUpdate",CampaignUpdateSchema);
+
+
+module.exports = storyUpdateModel;

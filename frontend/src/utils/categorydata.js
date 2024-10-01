@@ -1,18 +1,21 @@
 const category = [
     {
       id: 1,
-      label: "Health",
-      value: "health",
+      category: "Charity",
+      label: "Charity",
+      value: "Charity",
     },
     {
       id: 2,
-      label: "Education",
-      value: "education",
+      category: "Community",
+      label: "Community",
+      value: "Community",
     },
     {
       id: 3,
-      label: "Environment",
-      value: "environment",
+      category: "Health",
+      label: "Health",
+      value: "Health",
     },
     {
       id: 4,

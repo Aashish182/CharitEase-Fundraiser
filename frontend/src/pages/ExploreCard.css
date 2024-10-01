@@ -35,7 +35,6 @@
     margin-top: 15px;
   }
   
-  /* Featured badge */
   .featured-badge {
     position: absolute;
     bottom: 8px;
@@ -61,7 +60,6 @@
     z-index: -1;
   }
   
-  /* Progress circle */
   .progress-circle {
     position: absolute;
     left: 10px;
@@ -100,7 +98,7 @@
         opacity: 0.4;
     }
 }
-  /* Card content */
+
   .card-content {
     padding: 16px;
     display: grid;
@@ -124,7 +122,6 @@
     color: #4B5563;
   }
 
-  /* Progress bar */
   .progress-bar-container {
     width: 100%;
     background-color: #E5E7EB;
@@ -138,7 +135,6 @@
     border-radius: 8px;
   }
   
-  /* Supporters count */
   .supporters {
     display: flex;
     align-items: center;

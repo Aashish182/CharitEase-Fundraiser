@@ -10,11 +10,12 @@ import { GiFlowerPot } from "react-icons/gi";
 import { LuClock3 } from "react-icons/lu";
 import { GoGoal, GoPeople } from "react-icons/go";
 import { useDispatch, useSelector } from 'react-redux';
-import { formatDate } from '../utils/dateFormator';
+import { formatDate, formatTime } from '../utils/dateFormator';
 import { MdOutlineReportGmailerrorred } from "react-icons/md";
 import img from '../asset/images/blog.jpeg';
 import SummaryApi from '../common';
 import { FaRupeeSign } from "react-icons/fa";
+import Story from '../components/Story';
 
 
 const Campaign = () => {
@@ -22,7 +23,7 @@ const Campaign = () => {
     const [openTab, setOpenTab] = useState(1);
     const dispatch = useDispatch();
     const user =useSelector(state => state?.user?.user);
-    const campaign =useSelector(state => state?.campaign?.data)
+    const campaign =useSelector(state => state?.campaign?.campaign)
     
     const [data,setData] = useState({
         title: "",
@@ -37,7 +38,9 @@ const Campaign = () => {
     })
 
     const params = useParams();
+
     const [loading,setLoading] = useState(false);
+
     const fetchCampaignDetails = async() =>{
         setLoading(true);
         const response = await fetch(SummaryApi.campaignDetails.url,{
@@ -56,9 +59,33 @@ const Campaign = () => {
         setData(dataResponse.data);
     }
 
+    
+
+
+    const [storyData,setStoryData] = useState([])
+
+
+    const fetchStoryUpdates = async() =>{
+    const response = await fetch(SummaryApi.getUpdateStory.url,{
+        method: SummaryApi.getUpdateStory.method,
+        headers : {
+            "content-type" : "application/json"
+        },
+        body : JSON.stringify({
+                campaignId : params?.id
+        })
+        })
+        const dataResponse = await response.json();
+        console.log("dataofstory",dataResponse)
+        setStoryData(dataResponse.data);
+    }
+
+
     useEffect(() =>{
+        fetchStoryUpdates()
         fetchCampaignDetails()
     },[])
+
 
     // calculating donation raised by campaign
     // const donationRaised = donations.reduce((acc, curr) => acc + curr.amount, 0);
@@ -67,15 +94,6 @@ const Campaign = () => {
         const goal = Math.round((data?.raisedAmount / data?.amount) * 100);
         return goal > 100 ? 100 : goal;
     };
-
-    console.log("created",data?.createdBy)
-
-    // useEffect(() => {
-    //     dispatch(getCampaign(id));
-    //     dispatch(fetchDonationByCampaign(id));
-    //     dispatch(getStories(id));
-    //     window.scrollTo(0, 0);
-    // }, [id, dispatch]);
 
     return (
         <div>
@@ -99,7 +117,7 @@ const Campaign = () => {
                             <div>
                                 <h1 className='campaign-owner-name'>
                                     
-                                    {data?.title} error
+                                    {data?.creator?.name}
                                 </h1>
                             </div>
                         </div>
@@ -130,7 +148,7 @@ const Campaign = () => {
 
                         {openTab === 3 && (
                             <div className='tab-content'>
-                                {/* <Story story={story} /> */}hii
+                                <Story story={storyData}/>
                             </div>
                         )}
                     </div>
@@ -143,7 +161,7 @@ const Campaign = () => {
                         </div>
                         <div className='campaign-stats'>
                             <div className='campaign-stat'>
-                                <h1 className='stat-value'>$ {data?.amount}</h1>
+                                <h1 className='stat-value'>₹ {data?.amount}</h1>
                                 <h1 className='stat-label'><GoGoal color='#2ebc62' /> Goal</h1>
                             </div>
                             <div className='campaign-stat'>
@@ -151,11 +169,11 @@ const Campaign = () => {
                                 <h1 className='stat-label'><FaHeart className='heart' color='Red' /> Contributers</h1>
                             </div>
                             <div className='campaign-stat'>
-                                <h1 className='stat-value'>$ 20</h1>
+                                <h1 className='stat-value'>₹ 20</h1>
                                 <h1 className='stat-label'><GiFlowerPot className='flower-pot' color='#2ebc62' /> Min. Contribution</h1>
                             </div>
                             <div className='campaign-stat'>
-                                <h1 className='stat-value'>5</h1>
+                                <h1 className='stat-value'>{formatDate(user?.createdAt)}</h1>
                                 <h1 className='stat-label'><LuClock3 className='lock' color='#2ebc62' /> Created at</h1>
                             </div>
                         </div>

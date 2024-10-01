@@ -11,7 +11,7 @@ async function createCampaign(req,res) {
             throw new Error("Permission Denied, First Login!");
         }
 
-        const { title, story, amount, image, category, location} = req.body;
+        const { title, story, amount, image, category, creator, location} = req.body;
 
         
         const campaign = await campaignModel.findOne({title});
@@ -33,6 +33,9 @@ async function createCampaign(req,res) {
         }
         if(!category){
             throw new Error("Please Provide category")
+        }
+        if(!creator){
+            throw new Error("Please Provide creator")
         }
         if(!location){
             throw new Error("Please Provide location")

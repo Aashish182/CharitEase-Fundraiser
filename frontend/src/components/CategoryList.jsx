@@ -23,7 +23,7 @@ const CategoryList = () => {
       {
         categoryCampaign.map((campaign,index) =>{
           return(
-            <>hi</>
+            <>{campaign.name}</>
           )
         })
       }

@@ -50,11 +50,8 @@
     font-weight: 500;
 }
 
-.section-title {
+.section-update-organizer {
     font-size: 25px;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    margin-left: -350px;
 }
 
 .updates-list {
@@ -64,8 +61,9 @@
 .update-item {
     display: flex;
     gap: 1rem;
-    padding: 0.75rem;
-    border-bottom: 1px solid #e2e8f0;
+    margin-top: 10px;
+    height: 60px;
+    border-bottom: 1px solid #cacccf;
 }
 
 .update-details {
@@ -77,7 +75,7 @@
     font-size: 0.875rem;
 }
 
-.icon {
+.user-icon {
     color:#2ebc62;
 }
 

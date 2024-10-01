@@ -25,6 +25,11 @@ import ManageCampaign from './pages/ManageCampaign';
 import ViewDonation from './components/ViewDonation';
 import EditCampaign from './components/EditCampaign';
 import UpdatesCampaign from './components/UpdatesCampaign';
+import {ForgetPassword} from './pages/ForgetPassword';
+import AdminPanel from './pages/AdminPanel';
+import AllUsers from './pages/AllUsers';
+import AllCampaigns from './pages/AllCampaigns';
+import AllContacts from './pages/AllContacts';
 
 
 function App() {
@@ -82,6 +87,24 @@ function App() {
       element:<><Navbar /><Register/></>
     },
     {
+      path:"/AdminPanel",
+      element:<><Navbar /><AdminPanel/></>,
+      children:[
+        {
+          path:"AllUsers",
+          element:<AllUsers/>
+        },
+        {
+          path:"AllCampaigns",
+          element:<AllCampaigns/>
+        },
+        {
+          path:"AllContacts",
+          element:<AllContacts/>
+        }
+      ]
+    },
+    {
       path:"/CreateCampaign",
       element:<><Navbar /><CreateCampaign/></>
     },
@@ -94,11 +117,15 @@ function App() {
       element:<><Navbar /><Profile/></>
     },
     {
+      path:"/ForgetPassword",
+      element:<><Navbar /><ForgetPassword/></>
+    },
+    {
       path:"/Campaign/:id",
       element:<><Navbar /><Campaign/></>
     },
     {
-      path:"/MyCampaign",
+      path:"/MyCampaign/:id",
       element:<><Navbar /><MyCampaign/></>
     },
     {

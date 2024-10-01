@@ -45,8 +45,39 @@ const SummaryApi = {
     updateCampaign :{
         url : `${backendDomain}/api/update-campaign`,
         method : "post"
-    }
-    
+    },
+    updateStory :{
+        url : `${backendDomain}/api/story-update`,
+        method : "post"
+    },
+    getUpdateStory :{
+        url : `${backendDomain}/api/get-storyUpdate`,
+        method : "post"
+    },
+    deletestory: {
+        url : `${backendDomain}/api/delete-story`,
+        method : 'post'
+    },
+    categoryWiseCampaign: {
+        url : `${backendDomain}/api/category-campaign`,
+        method : 'post'
+    },
+    allUser: {
+        url: `${backendDomain}/api/all-users`,
+        method: 'get'
+    },
+    updateUser: {
+        url: `${backendDomain}/api/update-user`,
+        method: 'post'
+    },
+    contactDetail: {
+        url: `${backendDomain}/api/contact-detail`,
+        method: "post"
+    },
+    allContact: {
+        url: `${backendDomain}/api/all-contacts`,
+        method: 'get'
+    },
 }
 
 

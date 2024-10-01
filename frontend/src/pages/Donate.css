@@ -39,6 +39,13 @@
     gap: 1rem;
 }
 
+.filter-option{
+    display: flex;
+    background-color: #e6e9ecd8;
+    padding-top: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 .filter{
     display: flex;
     background-color: #e6e9ecd8;
@@ -52,7 +59,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.filter h4{
+.filter h4, .filter-option h4{
     font-size: 20px;
     padding-left: 15px;
 }

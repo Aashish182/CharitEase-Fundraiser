@@ -1,12 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import contactimg from '../asset/images/contact3d.png';
 import Footer from '../components/Footer';
 import { MdMap, MdCall } from "react-icons/md";
 import { IoIosMailUnread } from "react-icons/io";
 import './Contact.css'; 
 import Banner from './Banner';
+import SummaryApi from '../common';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Contact = () => {
+
+    const navigate = useNavigate();
+    const [data, setData] = useState({
+        name: "",
+        email: "",
+        number: "",
+        message: "",
+    });
+
+    const handleChange = (e) => {
+        const { name , value } = e.target
+        setData((preve)=>{
+            return {
+                ...preve,
+                [name] : value
+            }
+        })
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const dataResponse = await fetch(SummaryApi.contactDetail.url,{
+            method: SummaryApi.contactDetail.method,
+            headers: {
+                "content-type":"application/json"
+            },
+            credentials : 'include',
+            body : JSON.stringify(data)
+        })
+
+        const dataApi = await dataResponse.json();
+
+        if(dataApi.success){
+            toast.success(dataApi?.message);
+            navigate('/Contact');
+        }
+        if(dataApi.error){
+            toast.error(dataApi?.message)
+        }
+    };
+
     return (
         <>
             
@@ -45,22 +89,26 @@ const Contact = () => {
                 <div className='form-container'>
                     <img className='contact-img' src={contactimg} alt="Contact" />
                     <div className='form-wrapper'>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className='form-group'>
                                 <label className="form-label">Name *</label>
-                                <input type="text" className="form-input" placeholder="Apsit Jain" />
+                                <input type="text" className="form-input" placeholder="Apsit Jain" 
+                                name='name' value={data.name} onChange={handleChange} required/>
                             </div>
                             <div className='form-group'>
                                 <label className="form-label">Email *</label>
-                                <input type="text" className="form-input" placeholder="example@gmail.com" />
+                                <input type="text" className="form-input" placeholder="example@gmail.com"
+                                name='email' value={data.email} onChange={handleChange} required />
                             </div>
                             <div className='form-group'>
                                 <label className="form-label">Phone Number*</label>
-                                <input type="text" className="form-input" placeholder="Phone Number" />
+                                <input type="text" className="form-input" placeholder="Phone Number"
+                                name='number' value={data.number} onChange={handleChange} required />
                             </div>
                             <div className='form-group'>
                                 <label className="form-label">Message *</label>
-                                <textarea id="message" rows="10" className="form-textarea" placeholder="Start typing..."></textarea>
+                                <textarea id="message" rows="10" className="form-textarea" placeholder="Start typing..."
+                                name='message' value={data.message} onChange={handleChange} required></textarea>
                             </div>
                             <div className='form-group'>
                                 <input type='submit' value='Send Message' className='form-submit' />

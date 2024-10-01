@@ -14,6 +14,15 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [menuDisplay,setMenuDisplay] = useState(false);
   const dispatch = useDispatch();
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   const user =useSelector(state => state?.user?.user)
 
@@ -45,7 +54,7 @@ const Navbar = () => {
         user?.name ? (
           <ul>
           <NavLink className={(e)=>{return e.isActive?"active":"non"}} to='/Home'><li>Home</li></NavLink>
-          <NavLink className={(e)=>{return e.isActive?"active":"non"}} to='/MyCampaign'><li>My Campaign</li></NavLink>
+          <NavLink className={(e)=>{return e.isActive?"active":"non"}} to={`/MyCampaign/${user._id}`}><li>My Campaign</li></NavLink>
           <NavLink className={(e)=>{return e.isActive?"active":"non"}} to='/Donate'><li>Donate</li></NavLink>
           <NavLink className={(e)=>{return e.isActive?"active":"non"}} to='/Contact'><li>Contact</li></NavLink>
           </ul>
@@ -67,7 +76,11 @@ const Navbar = () => {
         <div className="profile">
             {
               user?.name ? (
-                <li className='username' onClick={() => setMenuDisplay(preve => !preve)}>{user?.name} <IoIosArrowDown className='arrow' /></li>
+                <li className='username' onClick={() => setMenuDisplay(preve => !preve)} 
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}>
+                  {user?.name} <IoIosArrowDown className='arrow' />
+                </li>
               ): (
               <NavLink className={(e)=>{return e.isActive?"active":"non"}} to='/Login'>
               <li>Login</li> 
@@ -76,11 +89,23 @@ const Navbar = () => {
             }
 
             {
-              menuDisplay &&(
-                <div className='profile_hover'>
-                <NavLink className='profile_link' to='/Profile'>
+              isHovered &&(
+                <div className='profile_hover' onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}>
+                { user?.role == "ADMIN" ? (
+                  <>
+                  <NavLink className='profile_link' to='/Profile'>
+                      <div className='profile_link' onClick={() => setMenuDisplay(preve => !preve)}>Profile</div>
+                  </NavLink>
+                  <NavLink className='profile_link' to='/AdminPanel'>
+                    <div className='profile_link' onClick={() => setMenuDisplay(preve => !preve)}>Admin Panel</div>
+                  </NavLink>
+                  </>
+                ) :(
+                  <NavLink className='profile_link' to='/Profile'>
                   <div className='profile_link' onClick={() => setMenuDisplay(preve => !preve)}>Profile</div>
-                </NavLink>
+                  </NavLink>
+                )}
                 <NavLink className='profile_link'>
                   <div className='Logout' onClick={handleLogout}>
                     LogOut

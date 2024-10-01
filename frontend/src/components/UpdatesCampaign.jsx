@@ -7,33 +7,97 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
 import { formatDate, formatTime } from '../utils/dateFormator';
 import { VscTrash } from 'react-icons/vsc';
+import SummaryApi from '../common';
+import { toast } from 'react-toastify';
 
 const UpdatesCampaign = () => {
-  // const { id } = useParams();
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  // const user = useSelector(state => state.user.data);
-  // const stories = useSelector(state => state.story.data);
-  // const campaign = useSelector(state => state.campaign.data);
-  // const { data, isLoading } = useSelector(state => state.campaign);
+  
+  const user =useSelector(state => state?.user?.user)
+  const params = useParams();
+  
+  const dispatch = useDispatch();
 
-  // // form state
-  // const [story, setStory] = useState({
-  //   campaignId: id,
-  //   updateContent: ''
-  // });
+  const [data, setData] = useState({
+    userId: user?._id,
+    campaignId: params?.id,
+    updateContent: '',
+  });
 
-  // // handling story update
-  // const handleStoryUpdate = (e) => {
-  //   e.preventDefault();
-  //   dispatch(addStory(story));
-  //   dispatch(getCampaign(id));
-  // };
+  const handleChange = (e) => {
+      const { name , value } = e.target
+      setData((preve)=>{
+          return {
+              ...preve,
+              [name] : value
+          }
+      })
+  };
 
-  // useEffect(() => {
-  //   dispatch(getCampaign(id));
-  //   dispatch(getStories(id));
-  // }, [id, dispatch]);
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      const dataResponse = await fetch(SummaryApi.updateStory.url,{
+          method: SummaryApi.updateStory.method,
+          headers: {
+              "content-type":"application/json"
+          },
+          credentials : 'include',
+          body : JSON.stringify(data)
+      })
+
+      const dataApi = await dataResponse.json();
+
+      if(dataApi.success){
+          toast.success(dataApi?.message);
+      }
+      if(dataApi.error){
+          toast.error(dataApi?.message)
+      }
+
+  };
+
+  console.log(params)
+  //getting story update
+  const [storyData,setStoryData] = useState([])
+
+// const [loading,setLoading] = useState(false);
+const fetchStoryUpdates = async() =>{
+    const response = await fetch(SummaryApi.getUpdateStory.url,{
+        method: SummaryApi.getUpdateStory.method,
+        headers : {
+          "content-type" : "application/json"
+        },
+        body : JSON.stringify({
+                campaignId : params?.id
+        })
+      })
+    
+
+    const dataResponse = await response.json();
+    console.log("dataofstory",dataResponse)
+    setStoryData(dataResponse.data);
+}
+
+useEffect(() =>{
+  fetchStoryUpdates()
+},[]);
+
+
+const deleteStory = async(id) => {
+    const response = await fetch(SummaryApi.deletestory.url,{
+        method: SummaryApi.deletestory.method,
+        headers : {
+            "content-type" : "application/json"
+        },
+        body : JSON.stringify({
+                storyId : id
+        })
+    });
+
+    const dataApi = await response.json();
+    if(dataApi.success){
+        toast.success(dataApi.message);
+    }
+};
 
   return (
     <div className='campaign-updates-container'>
@@ -46,37 +110,41 @@ const UpdatesCampaign = () => {
 
         <div className='content-wrapper'>
           <div className='organizer-section'>
-            <h1 className='section-title'>Organizer</h1>
+            <h1 className='section-update-organizer'>Organizer</h1>
             <div className='organizer-info'>
-              <GoPeople size={30} />
+              <GoPeople size={35} />
               <div className='organizer-details'>
-                <h1>{/*campaign?.campaignOwner?.email*/}</h1>
-                <p>{/*campaign?.campaignOwner?.firstName*/} {/*campaign?.campaignOwner?.lastName*/}</p>
+                <h1>{user?.email}</h1>
+                <h1>{user?.name}</h1>
               </div>
             </div>
 
             <div className='updates-section'>
-              <h1 className='section-title'>Updates:</h1>
+              <h1 className='section-update-organizer'>Updates:</h1>
               <div className='updates-list'>
-                {/* {stories.map((item, index) => (
+              { storyData.length > 0 && 
+                storyData.map((Sdata, index) => (
                   <div key={index} className='update-item'>
-                    <GoPeople className='icon' size={25} />
+                    <GoPeople className='user-icon' size={30} />
                     <div className='update-details'>
-                      <p>{item.userId?.firstName} {item.userId?.lastName}</p>
-                      <p>{item.updateContent}</p>
-                      <p className='timestamp'>{formatDate(item.createdAt)} - {formatTime(item.createdAt)}</p>
+                      <div>{Sdata?.userId?.name}</div>
+                      <div>{Sdata?.updateContent}</div>
+                      <div className='timestamp'>{formatDate(Sdata?.createdAt)} - {formatTime(Sdata?.createdAt)}</div>
                     </div>
-                    <button onClick={() => dispatch(deleteStory(item._id))} className='delete-button'>
-                      <VscTrash size={25} className='trash-icon' />
-                    </button>
+                    <div onClick={() => deleteStory(Sdata._id)} className='delete-button'>
+                      <VscTrash size={30} className='trash-icon' />
+                    </div>
                   </div>
-                ))} */}
+                ))
+              }
+
               </div>
             </div>
           </div>
 
           <div className='form-section'>
-            <form /*onSubmit={handleStoryUpdate}*/ className='update-form'>
+            <form onSubmit={handleSubmit} className='update-form'>
+            
               <div className='form-group'>
                 <label className='form-label'>Selected Campaign</label>
                 <input
@@ -84,17 +152,18 @@ const UpdatesCampaign = () => {
                   className='input-field'
                   type="text"
                   placeholder='Help for treatment of cancer'
-                  // value={data?.campaignTitle}
+                  value={storyData?.campaignId?.title}
                 />
               </div>
+
               <div className='form-group'>
                 <label className='form-label'>Write an update*</label>
-                <textarea
+                <textarea 
                   className='input-field'
                   placeholder='Thank you for all the donations. We started our project and are in midway...'
                   cols="30"
                   rows="5"
-                  // onChange={(e) => setStory({ ...story, updateContent: e.target.value })}
+                  name='updateContent' value={data.updateContent} onChange={handleChange} required
                 ></textarea>
                 <p className='note'>Note*: Updates will be posted according to the current timestamp</p>
               </div>

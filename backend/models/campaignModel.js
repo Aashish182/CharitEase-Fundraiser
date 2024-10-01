@@ -7,7 +7,11 @@ const campaignSchema = new mongoose.Schema({
     amount: String,
     image: String,
     category: String,
-    creator: String,
+    creator: {
+        type: schema.Types.ObjectId,
+        ref: 'user',
+        required : true
+    },
     location: String,
     raisedAmount: {
         type: Number,
@@ -17,10 +21,7 @@ const campaignSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    createdBy: {
-        type: schema.Types.ObjectId,
-        ref: 'user'
-    },
+    
     updates: [
         {
             type: schema.Types.ObjectId,

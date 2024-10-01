@@ -40,7 +40,7 @@ const Donate = () => {
     <div className="maincontainer">
       <aside className='sidebar'>
         <div className="sidebar-1">
-          <div className='filter'>
+          <div className='filter-option'>
             <h4>Filter By</h4>
             <div className='button-filter'>
             <button className='filter-button'><h6>Reset<HiAdjustmentsHorizontal/></h6></button>

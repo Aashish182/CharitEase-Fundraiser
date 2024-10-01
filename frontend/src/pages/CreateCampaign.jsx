@@ -14,12 +14,12 @@ const CreateCampaign = () => {
 
   const navigate = useNavigate();
     const [data, setData] = useState({
-      title: '',
+      title: " ",
       story:'',
       amount: '',
       image: '',
       category: '',
-      creator: '',
+      creator: user._id,
       location: ''
     });
 

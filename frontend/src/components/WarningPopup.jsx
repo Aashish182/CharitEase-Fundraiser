@@ -24,7 +24,6 @@ const WarningPopup = ({ setPopupVisible, id }) => {
         const dataApi = await response.json();
         if(dataApi.success){
             toast.success(dataApi.message);
-            navigate('/MyCampaign');
         }
 
 

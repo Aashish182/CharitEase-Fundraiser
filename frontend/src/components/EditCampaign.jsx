@@ -23,9 +23,9 @@ const EditCampaign = () => {
 })
 
 const params = useParams();
-const [loading,setLoading] = useState(false);
+// const [loading,setLoading] = useState(false);
 const fetchCampaignDetails = async() =>{
-    setLoading(true);
+    
     const response = await fetch(SummaryApi.campaignDetails.url,{
         method: SummaryApi.campaignDetails.method,
         headers : {
@@ -35,14 +35,12 @@ const fetchCampaignDetails = async() =>{
                 campaignId : params?.id
         })
     })
-    setLoading(false);
+    
 
     const dataResponse = await response.json();
     console.log("data",dataResponse)
     setCampaigndata(dataResponse.data);
 }
-
-
 
 useEffect(() =>{
     fetchCampaignDetails()
@@ -50,66 +48,82 @@ useEffect(() =>{
 
 
   const navigate = useNavigate();
-  console.log("campaign",campaigndata?.title)
-    const [data, setData] = useState({
-      ...campaigndata,
-      title: campaigndata?.title,
-      story: campaigndata?.story,
-      amount: campaigndata?.amount,
-      image: campaigndata?.image,
-      category: campaigndata?.category,
-      creator: user?.name,
-      location: campaigndata?.location
-    });
+  
+  const [data, setData] = useState({
+    ...campaigndata,
+    title: '',
+    story:'',
+    amount: '',
+    image: '',
+    category: '',
+    creator: user?._id,
+    location: ''
+  });
 
-    const handleChange = (e) => {
-        const { name , value } = e.target
-        setData((preve)=>{
-            return {
-                ...preve,
-                [name] : value
-            }
-        })
+  useEffect(() => {
+    if (campaigndata) {
+        setData({
+          ...campaigndata,
+            title: campaigndata.title || '',
+            story: campaigndata.story || '',
+            amount: campaigndata.amount || '',
+            image: campaigndata.image || '',
+            category: campaigndata.category || '',
+            creator: user?._id || '', 
+            location: campaigndata.location || '',
+        });
+    }
+}, [campaigndata, user]);
+
+  const handleChange = (e) => {
+      const { name , value } = e.target
+      setData((preve)=>{
+          return {
+              ...preve,
+              [name] : value
+          }
+      })
+  };
+
+  const transformFile = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setData({ ...data, image: reader.result });
     };
+  };
 
-    const transformFile = (e) => {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setData({ ...data, image: reader.result });
-      };
-    };
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      const dataResponse = await fetch(SummaryApi.updateCampaign.url,{
+          method: SummaryApi.updateCampaign.method,
+          headers: {
+              "content-type":"application/json"
+          },
+          credentials : 'include',
+          body : JSON.stringify(data)
+      })
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const dataResponse = await fetch(SummaryApi.updateCampaign.url,{
-            method: SummaryApi.updateCampaign.method,
-            headers: {
-                "content-type":"application/json"
-            },
-            credentials : 'include',
-            body : JSON.stringify(data)
-        })
+      const dataApi = await dataResponse.json();
 
-        const dataApi = await dataResponse.json();
+      if(dataApi.success){
+          toast.success(dataApi?.message);
+          navigate('/Donate');
+      }
 
-        if(dataApi.success){
-            toast.success(dataApi?.message);
-            navigate('/Donate');
-        }
-        if(dataApi.error){
-            toast.error(dataApi?.message)
-        }
+      if(dataApi.error){
+          toast.error(dataApi?.message)
+      }
 
-    };
+  };
 
   return (
     <>
       <div className='create-campaign-container'>
         <div className='create-campaign-wrapper'>
           <div className='create-campaign-header'>
-            <h1 className='header-title'>Edit campaigns</h1>
+            <h1 className='header-title'>Update campaigns</h1>
           </div>
           <form className="create-campaign-form" onSubmit={handleSubmit} >
             <div className='form-group'>
@@ -150,8 +164,16 @@ useEffect(() =>{
                 type="file"
                 className="form-input"
                 placeholder="Help me fund my college fee"
-                name='image'  onChange={(e) => transformFile(e)} required
+                name='image'  onChange={(e) => transformFile(e)} 
               />
+              {data.image && (
+                                <div className="image-preview">
+                                    <img
+                                        src={data.image || campaigndata.image}
+                                        alt="Campaign Preview"
+                                    />
+                                </div>
+                            )}
             </div>
 
             <div className='form-group'>

@@ -13,6 +13,7 @@ import BlogGrid from './BlogGrid';
 import CategoryList from '../components/CategoryList';
 import { useSelector } from 'react-redux';
 import { toast } from "react-toastify";
+import DonateCampaignHome from '../components/DonateCampaignHome';
 
 const Home = () => {
 
@@ -70,17 +71,17 @@ const Home = () => {
           <div className='grid-home-container'>
             <div className='card'>
               <img className='image' src={create} alt="Register Account" />
-              <h1 className='title'>Register Account</h1>
+              <h1 className='card-title'>Register Account</h1>
               <p className='description'>Create an account for fundraising with email and password.</p>
             </div>
             <div className='card'>
               <img className='image' src={campaign} alt="Create Campaign" />
-              <h1 className='title'>Create Campaign</h1>
+              <h1 className='card-title'>Create Campaign</h1>
               <p className='description'>Enter your campaign details and start raising money.</p>
             </div>
             <div className='card'>
               <img className='image' src={money} alt="Withdraw Money" />
-              <h1 className='title'>Withdraw Money</h1>
+              <h1 className='card-title'>Withdraw Money</h1>
               <p className='description'>Add your bank details and withdraw money from your account.</p>
             </div>
           </div>
@@ -88,7 +89,7 @@ const Home = () => {
         
       </div>
       <div className="filetag">
-        
+        <DonateCampaignHome />
         <BlogGrid />
         <Banner />
         <Fraq />

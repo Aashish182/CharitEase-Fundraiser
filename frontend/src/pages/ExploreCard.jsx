@@ -14,7 +14,7 @@ import Context from '../context';
 const ExploreCard = ({data}) => {
 
     const calculateGoalPercent = () => {
-        const datanum = Math.round((data.raisedAmount/  data?.amount) * 100);
+        const datanum = Math.round((data?.raisedAmount /  data?.amount) * 100);
         if (datanum > 100) {
             return 100
         }
@@ -45,7 +45,7 @@ const ExploreCard = ({data}) => {
                 </div>
                 <div className='card-content'>
                     <h1 className='title'>{data?.title}</h1>
-                    <h1 className='raised_text'><b>${data?.raisedAmount}</b> raised of ${data?.amount}</h1>
+                    <h1 className='raised_text'><b>₹{data?.raisedAmount}</b> raised of ₹{data?.amount}</h1>
                     <div className="progress-bar-container">
                         <div className="progress-bar" style={{ width: `${calculateGoalPercent()}%` }}></div>
                     </div>

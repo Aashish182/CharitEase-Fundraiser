@@ -11,16 +11,21 @@ import LoggedUserCampaignCard from './LoggedUserCampaignCard';
 const MyCampaign = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { userId } = useParams();
   const params = useParams();
   console.log("param",params)
   
   const[allCampaign,setAllCampaign] = useState([]);
-  const userId = ((state) => state.user.user._id)
-  console.log("userId",userId)
 
     const fetchAllCampaignByUser = async() =>{
         const response = await fetch(SummaryApi.campaignDetailsUser.url,{
-            method: SummaryApi.campaignDetailsUser.method
+            method: SummaryApi.campaignDetailsUser.method,
+            headers : {
+                "content-type" : "application/json"
+            },
+            body : JSON.stringify({
+                    userId : params?.id
+            })
         })
         const dataResponse = await response.json();
         
@@ -28,7 +33,7 @@ const MyCampaign = () => {
     }
 
     useEffect(() => {
-        fetchAllCampaignByUser((userId))
+        fetchAllCampaignByUser()
     },[])
   // const myCampaigns = useSelector(state => state.campaign.data);
   // const isLoading = useSelector(state => state.campaign.isLoading);

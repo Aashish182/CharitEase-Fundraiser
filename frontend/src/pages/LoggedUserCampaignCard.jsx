@@ -5,7 +5,7 @@ import { GiUpgrade } from "react-icons/gi";
 import { FaHeart } from "react-icons/fa";
 import WarningPopup from '../components/WarningPopup';
 
-const LoggedUserCampaignCard = ({ popupVisible, setPopupVisible, campaign, index }) => {
+const LoggedUserCampaignCard = ({ popupVisible, setPopupVisible, campaign, index, callFunc }) => {
     
     
 
@@ -30,7 +30,7 @@ const LoggedUserCampaignCard = ({ popupVisible, setPopupVisible, campaign, index
                         Mark Completed
                     </div>
                     {
-                        popupVisible && <WarningPopup setPopupVisible={setPopupVisible} id={campaign?._id} />
+                        popupVisible && <WarningPopup setPopupVisible={setPopupVisible} id={campaign?._id} callFunc={callFunc}/>
                     }
                 </div>
                 <div className='stats'>

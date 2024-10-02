@@ -78,6 +78,18 @@ const SummaryApi = {
         url: `${backendDomain}/api/all-contacts`,
         method: 'get'
     },
+    addbank: {
+        url: `${backendDomain}/api/add-bank`,
+        method: 'post'
+    },
+    bankdetail: {
+        url: `${backendDomain}/api/bank-detail`,
+        method: 'post'
+    },
+    deletebank: {
+        url: `${backendDomain}/api/delete-bank`,
+        method: 'post'
+    },
 }
 
 

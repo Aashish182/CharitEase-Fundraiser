@@ -6,7 +6,7 @@ import SummaryApi from '../common';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-const WarningPopup = ({ setPopupVisible, id }) => {
+const WarningPopup = ({ setPopupVisible, id, callFunc }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
@@ -24,6 +24,7 @@ const WarningPopup = ({ setPopupVisible, id }) => {
         const dataApi = await response.json();
         if(dataApi.success){
             toast.success(dataApi.message);
+            callFunc()
         }
 
 

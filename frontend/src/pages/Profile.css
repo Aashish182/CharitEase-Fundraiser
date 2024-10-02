@@ -40,6 +40,10 @@
     font-size: 20px;
 }
 
+.profile-field span{
+    width: 300px;
+}
+
 .password-block{
     display: flex;
     gap: 50px;
@@ -67,4 +71,77 @@
 
 .change-password-link:hover {
     background-color: #fcd34d;
+}
+
+.profile-bank{
+    margin-top: 50px;
+}
+
+.profile-bank-content{
+    padding-left: 25px;
+    padding-top: 10px;
+}
+
+.account-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem 0;
+    font-size: 0.875rem;
+}
+
+.account-details {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin-left: -260px;
+    gap: 30px;
+}
+
+.delete-btn {
+    margin-left: 0.25rem;
+    padding: 0.25rem;
+    color: #f97316;
+    background-color: #fff7ed;
+    border-radius: 0.75rem;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #fed7aa;
+}
+
+.balance-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem 0;
+}
+
+.balance-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.no-account-header {
+    margin-left: 25px;
+    display: flex;
+    font-size: 20px;
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-account-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-account-btn:hover{
+    background-color: #49ef86;
+    transition: background-color 0.3s ease-in;
 }

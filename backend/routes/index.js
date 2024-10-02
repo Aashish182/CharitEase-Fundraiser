@@ -22,6 +22,9 @@ const allUsers = require('../controller/allUsers');
 const updateUser = require('../controller/updateUser');
 const contactAdmin = require('../controller/contactAdmin');
 const AllContacts = require('../controller/allContacts');
+const addBank = require('../controller/addBank');
+const getBankDetail = require('../controller/getBankDetail');
+const deleteBank = require('../controller/deleteBank');
 
 router.post("/Register",userRegisterController);
 router.post("/Login",userLoginController);
@@ -57,6 +60,11 @@ router.post('/contact-detail',authToken,contactAdmin);
 
 router.get('/all-contacts',AllContacts);
 
+router.post('/add-bank',addBank);
+
+router.post('/bank-detail',getBankDetail);
+
+router.post('/delete-bank',deleteBank);
 
 
 

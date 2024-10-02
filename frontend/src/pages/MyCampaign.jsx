@@ -74,6 +74,7 @@ const MyCampaign = () => {
                 setPopupVisible={setPopupVisible}
                 campaign={campaign}
                 index={index}
+                callFunc={fetchAllCampaignByUser}
               /> 
             
             ))}

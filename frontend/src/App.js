@@ -30,6 +30,8 @@ import AdminPanel from './pages/AdminPanel';
 import AllUsers from './pages/AllUsers';
 import AllCampaigns from './pages/AllCampaigns';
 import AllContacts from './pages/AllContacts';
+import DonatePage from './pages/DonatePage';
+import Failed from './components/Failed';
 
 
 function App() {
@@ -53,8 +55,6 @@ function App() {
   useEffect(() => {
     fetchUserDetails()
   },[])
-
-
 
 
   const router=createBrowserRouter([
@@ -104,6 +104,7 @@ function App() {
         }
       ]
     },
+    
     {
       path:"/CreateCampaign",
       element:<><Navbar /><CreateCampaign/></>
@@ -144,6 +145,11 @@ function App() {
       path:"/UpdatesCampaign/:id",
       element:<><Navbar /><UpdatesCampaign/></>
     },
+    {
+      path:"/Failed",
+      element:<><Navbar /><Failed/></>
+    },
+    
   ])
   return (
     <>

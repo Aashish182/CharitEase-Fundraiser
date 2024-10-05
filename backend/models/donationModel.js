@@ -1,11 +1,11 @@
-const express = require("express");
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const DonationSchema = new Schema({
   campaignId: {
     type: Schema.Types.ObjectId,
-    ref: "Campaign",
+    ref: "campaign",
     required: true,
   },
   userId: {
@@ -23,13 +23,11 @@ const DonationSchema = new Schema({
   transactionId: {
     type: String,
   },
-  session: {
-    type: String,
-  },
-  createdAt: {
+  donatedAt: {
     type: Date,
     default: Date.now,
   },
 });
 
-module.exports = mongoose.model("Donation", DonationSchema);
+const donationModel = mongoose.model('donation', DonationSchema);
+module.exports = donationModel;

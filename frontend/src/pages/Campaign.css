@@ -152,13 +152,23 @@
     color: #6b7280;
 }
 
-.donation-form {
+.login-message form{
     display: grid;
     gap: 1rem;
+    width: 400px;
 }
 
+.login-message form:focus{
+    height: 400px;
+}
+
+label{
+    width: 400px;
+}
+
+
 .donation-input {
-    width: 100%;
+    width: 375px;
     padding: 0.75rem;
     border-radius: 0.5rem;
     border: 1px solid #d1d5db;
@@ -171,6 +181,7 @@
     border-radius: 0.5rem;
     transition: background-color 0.3s ease;
     cursor: pointer;
+    width: 375px;
 }
 
 .donate-btn:hover {

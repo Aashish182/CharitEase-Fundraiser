@@ -5,7 +5,10 @@ import campaignReducer from './campaignSlice';
 export const store = configureStore({
   reducer: {
     user : userReducer,
-    campaign : campaignReducer
+    campaign : campaignReducer,
+    // story: storySlice,
+    // donation: donationReducer,
+    // bank: bankSlice,
   }
 })
 

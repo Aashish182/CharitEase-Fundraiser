@@ -3,7 +3,6 @@ const campaignModel = require("../models/campaignModel")
 const getCampaignDetailsByUser = async(req,res) =>{
     try{
         const {userId} = req.body;
-        console.log(userId);
         
         const campaign = await campaignModel.find({creator:userId});
 

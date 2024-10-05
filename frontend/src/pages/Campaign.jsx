@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './Campaign.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
 import { FaHeart } from "react-icons/fa";
 import { GiFlowerPot } from "react-icons/gi";
@@ -16,15 +16,35 @@ import img from '../asset/images/blog.jpeg';
 import SummaryApi from '../common';
 import { FaRupeeSign } from "react-icons/fa";
 import Story from '../components/Story';
+import DonatePage from './DonatePage';
 
 
 const Campaign = () => {
     const { id } = useParams();
     const [openTab, setOpenTab] = useState(1);
+    const [openDonateTab, setOpenDonateTab] = useState(false);
     const dispatch = useDispatch();
     const user =useSelector(state => state?.user?.user);
     const campaign =useSelector(state => state?.campaign?.campaign)
     
+    const [donateAmount,setDonateAmount] = useState({
+        amount: ""
+    })
+
+    const handleChange = (e) => {
+        const { name , value } = e.target
+        setDonateAmount((preve)=>{
+            return {
+                ...preve,
+                [name] : value
+            }
+        })
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    };
+
     const [data,setData] = useState({
         title: "",
         story: "",
@@ -38,7 +58,7 @@ const Campaign = () => {
     })
 
     const params = useParams();
-
+    console.log(campaign?.title);
     const [loading,setLoading] = useState(false);
 
     const fetchCampaignDetails = async() =>{
@@ -94,6 +114,7 @@ const Campaign = () => {
         const goal = Math.round((data?.raisedAmount / data?.amount) * 100);
         return goal > 100 ? 100 : goal;
     };
+    console.log("amount",params?.id);
 
     return (
         <div>
@@ -155,7 +176,7 @@ const Campaign = () => {
             
                     {/* Right side */}
                     <div className='campaign-right'>
-                        <h1 className='raised-amount'>$ {data?.raisedAmount}<sub className='raised-sub'>Raised</sub></h1>
+                        <h1 className='raised-amount'>₹ {data?.raisedAmount}<sub className='raised-sub'>Raised</sub></h1>
                         <div className="progress-bar">
                             <div className="progress-bar-fill" style={{ width: `${calculateGoalPercent()}%` }}></div>
                         </div>
@@ -177,20 +198,32 @@ const Campaign = () => {
                                 <h1 className='stat-label'><LuClock3 className='lock' color='#2ebc62' /> Created at</h1>
                             </div>
                         </div>
+                        
 
                         {user?.name? (
                             <div className='login-message'>
-                            <form className='donation-form blur'>
+                            <form className='donation-form blur' onSubmit={handleSubmit}>
                                 <label>Support with a Donation </label>
-                                <input type="number" placeholder='50$' className='donation-input' />
-                                <input type="submit" value='Donate Now' className='donate-btn' />
+                                <input type="number" placeholder='₹20' name='amount' value={donateAmount.amount} className='donation-input' onChange={handleChange}/>
+                                <input type="submit" value='Donate Now' className='donate-btn' onClick={() => setOpenDonateTab(true)} />
+                                {
+                                    openDonateTab && (
+                                    <DonatePage 
+                                    onClose={() => setOpenDonateTab(false)} 
+                                    callFunc={fetchCampaignDetails}
+                                    amount = {donateAmount.amount}
+                                    userId = {user?._id}
+                                    campaign = {data}
+                                    />
+                                    )
+                                }
                             </form>
                             </div>
                         ) : (
                             <div className='login-message'>
                                 <form className='donation-form blur'>
                                     <label>Support with a Donation </label>
-                                    <input type="number" placeholder='50$' className='donation-input' />
+                                    <input type="number" placeholder='₹20' className='donation-input' />
                                     <input type="submit" value='Donate Now' className='donate-btn' />
                                 </form>
                                 <div className='login-overlay'>

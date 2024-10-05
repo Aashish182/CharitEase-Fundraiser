@@ -15,13 +15,16 @@ const Profile = () => {
     const user =useSelector(state => state?.user?.user);
     
     const[allBank,setAllBank] = useState([]);
-
+    console.log(user?._id)
     const fetchAllBank = async() =>{
         const response = await fetch(SummaryApi.bankdetail.url,{
             method: SummaryApi.bankdetail.method,
-            body : JSON.stringify({
-                userId : user?.name
-        })
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                userId: user?._id
+            })
         })
         const dataResponse = await response.json();
         console.log("res",dataResponse)
@@ -42,12 +45,12 @@ const Profile = () => {
         const dataApi = await response.json();
         if(dataApi.success){
             toast.success(dataApi.message);
-            fetchAllBank()
+            fetchAllBank();
         }
     };
 
     useEffect(() => {
-        fetchAllBank()
+        fetchAllBank();
     },[])
 
 

@@ -8,9 +8,9 @@ export const campaignSlice = createSlice({
   name: 'campaign',
   initialState,
   reducers: {
-    setCampaignDetails : (state,action) => {
+    setAllCampaign : (state,action) => {
       state.campaign = action.payload
-      console.log("campaignDetails:",action.payload)
+
     }
   },
 })

@@ -54,7 +54,7 @@ const Home = () => {
             </div>
             <div className="counting-1">
               <h4 className='count-3'><h1 className='dot-1'></h1>We raised over</h4>
-              <h2 className='count-4'>$<CountUp start={0} end={50000} duration={2} />+ </h2>
+              <h2 className='count-4'>₹<CountUp start={0} end={50000} duration={2} />+ </h2>
               <p className='count-5'>we have sucessfully raised over 50000 dollars in funds</p>
             </div>
             <div className="counting-2">

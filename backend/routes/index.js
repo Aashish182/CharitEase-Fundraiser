@@ -25,6 +25,10 @@ const AllContacts = require('../controller/allContacts');
 const addBank = require('../controller/addBank');
 const getBankDetail = require('../controller/getBankDetail');
 const deleteBank = require('../controller/deleteBank');
+const makeDonation = require('../controller/makeDonation');
+const allBankDetails = require('../controller/allBankDetails');
+const getDonationDetail = require('../controller/getDonationDetail');
+const campaignUser = require('../controller/campaignUser');
 
 router.post("/Register",userRegisterController);
 router.post("/Login",userLoginController);
@@ -65,6 +69,15 @@ router.post('/add-bank',addBank);
 router.post('/bank-detail',getBankDetail);
 
 router.post('/delete-bank',deleteBank);
+
+router.post('/make-donation',makeDonation);
+
+router.get('/all-bank-detail',allBankDetails);
+
+router.post('/donation-detail',getDonationDetail);
+
+router.post('/campaign-user',campaignUser);
+
 
 
 

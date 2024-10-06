@@ -21,7 +21,7 @@ const category = [
       id: 4,
       category: "Emergency",
       label: "Emergency",
-      value: "emergency",
+      value: "Emergency",
     },
   ];
   

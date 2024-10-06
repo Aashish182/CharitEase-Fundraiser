@@ -75,6 +75,9 @@
     font-size: 15px;
     margin: -15px 0 15px;
 }
+.remember-forgot label{
+    display: inline-block;
+}
 .remember-forgot label input{
     accent-color: #fff;
     margin-right: 4px;

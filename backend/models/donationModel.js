@@ -13,15 +13,33 @@ const DonationSchema = new Schema({
     ref: "user",
     required: true,
   },
+  cardemail: {
+    type: String,
+    required: true,
+  },
+  cardnumber: {
+    type: Number,
+    required: true,
+  },
+  cardname: {
+    type: String,
+    required: true,
+  },
+  cardexp: {
+    type: String,
+    required: true,
+  },
+  cardcvv: {
+    type: Number,
+    required: true,
+  },
   amount: {
     type: Number,
     required: true,
   },
-  paymentMethod: {
+  campaignimage: {
     type: String,
-  },
-  transactionId: {
-    type: String,
+    required: true,
   },
   donatedAt: {
     type: Date,

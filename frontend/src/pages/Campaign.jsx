@@ -17,6 +17,8 @@ import SummaryApi from '../common';
 import { FaRupeeSign } from "react-icons/fa";
 import Story from '../components/Story';
 import DonatePage from './DonatePage';
+import { toast } from 'react-toastify';
+import DonationList from '../components/DonationList';
 
 
 const Campaign = () => {
@@ -41,8 +43,19 @@ const Campaign = () => {
         })
     };
 
+    const openDonate=(amount) => {
+        if (!amount) {
+            toast.error("Please provide a donation amount.");
+        } else if (amount < 20) {
+            toast.error("Minimum contribution is ₹20.");
+        } else {
+            setOpenDonateTab(true); 
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        openDonate(donateAmount.amount);
     };
 
     const [data,setData] = useState({
@@ -75,8 +88,47 @@ const Campaign = () => {
         setLoading(false);
 
         const dataResponse = await response.json();
-        console.log("data",dataResponse)
+        
         setData(dataResponse.data);
+        fetchUserData(dataResponse?.data?.creator);
+    }
+    
+    const [creatorName, setCreatorName] = useState('');
+    const fetchUserData = async (userId) => {
+        if (!userId) return;
+
+        const response = await fetch(SummaryApi.campaignuser.url, {
+            method: SummaryApi.campaignuser.method,
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({ userId })
+        });
+
+        const dataResponse = await response.json();
+        console.log("name",dataResponse)
+        setCreatorName(dataResponse.data);
+    };
+
+    const [donationData,setDonationData] = useState([])
+
+    const fetchDonationDetail = async() =>{
+        setLoading(true);
+        const response = await fetch(SummaryApi.donationDetail.url,{
+            method: SummaryApi.donationDetail.method,
+            headers : {
+                "content-type" : "application/json"
+            },
+            body : JSON.stringify({
+                    campaignId : params?.id
+            })
+        })
+        setLoading(false);
+
+        const dataResponse = await response.json();
+        console.log("stiry",dataResponse?.data?.userId)
+        fetchUserData(dataResponse?.data?.userId);
+        setDonationData(dataResponse.data);
     }
 
     
@@ -96,7 +148,8 @@ const Campaign = () => {
         })
         })
         const dataResponse = await response.json();
-        console.log("dataofstory",dataResponse)
+        console.log("donation",dataResponse?.data?.userId)
+        fetchUserData(dataResponse?.data?.userId);
         setStoryData(dataResponse.data);
     }
 
@@ -104,6 +157,8 @@ const Campaign = () => {
     useEffect(() =>{
         fetchStoryUpdates()
         fetchCampaignDetails()
+        fetchDonationDetail()
+        fetchUserData()
     },[])
 
 
@@ -138,7 +193,7 @@ const Campaign = () => {
                             <div>
                                 <h1 className='campaign-owner-name'>
                                     
-                                    {data?.creator?.name}
+                                    {creatorName?.name}
                                 </h1>
                             </div>
                         </div>
@@ -162,14 +217,13 @@ const Campaign = () => {
 
                         {openTab === 2 && (
                             <div className='tab-content'>
-                                <h1 className='tab-details-title'>Supporters:</h1>
-                                <div className="tab-details">{/* <DonationList donations={donations} /> */}hlo</div>
+                                <DonationList donation={donationData} user={creatorName?.name}/>
                             </div>
                         )}
 
                         {openTab === 3 && (
                             <div className='tab-content'>
-                                <Story story={storyData}/>
+                                <Story story={storyData} user={creatorName?.name}/>
                             </div>
                         )}
                     </div>
@@ -186,7 +240,7 @@ const Campaign = () => {
                                 <h1 className='stat-label'><GoGoal color='#2ebc62' /> Goal</h1>
                             </div>
                             <div className='campaign-stat'>
-                                <h1 className='stat-value'>{/*donations.length*/}5</h1>
+                                <h1 className='stat-value'>{donationData?.length}</h1>
                                 <h1 className='stat-label'><FaHeart className='heart' color='Red' /> Contributers</h1>
                             </div>
                             <div className='campaign-stat'>
@@ -202,10 +256,10 @@ const Campaign = () => {
 
                         {user?.name? (
                             <div className='login-message'>
-                            <form className='donation-form blur' onSubmit={handleSubmit}>
+                            <form className='donation-form' onSubmit={handleSubmit}>
                                 <label>Support with a Donation </label>
                                 <input type="number" placeholder='₹20' name='amount' value={donateAmount.amount} className='donation-input' onChange={handleChange}/>
-                                <input type="submit" value='Donate Now' className='donate-btn' onClick={() => setOpenDonateTab(true)} />
+                                <input type="submit" value='Donate Now' className='donate-btn'  />
                                 {
                                     openDonateTab && (
                                     <DonatePage 

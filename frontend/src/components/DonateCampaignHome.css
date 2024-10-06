@@ -35,12 +35,23 @@
     width: auto;
     padding: 0px 30px;
     display: flex;
+    gap: 5px;
     align-items: center;
     background-color: #f3f4f6;
     transition: background-color 0.4s;
     border-radius: 9999px;
     border: 1px solid #2ebc62;
     cursor: pointer;
+}
+
+.category-button.active {
+    background-color: aliceblue;
+    color: #2ebc62;
+    border: 2px solid #22c55e;
+}
+
+.category-button.active .arrow-icon {
+    transform: rotate(180deg);
 }
 
 .category-button h4{
@@ -54,9 +65,6 @@
 
 .category-button.active {
     border: 2px solid #22c55e;
-}
-
-.reset-button {
 }
 
 .reset-btn {

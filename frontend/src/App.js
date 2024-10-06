@@ -32,6 +32,8 @@ import AllCampaigns from './pages/AllCampaigns';
 import AllContacts from './pages/AllContacts';
 import DonatePage from './pages/DonatePage';
 import Failed from './components/Failed';
+import Success from './components/Success';
+import AllBankDetails from './pages/AllBankDetails';
 
 
 function App() {
@@ -101,6 +103,10 @@ function App() {
         {
           path:"AllContacts",
           element:<AllContacts/>
+        },
+        {
+          path:"AllBankDetails",
+          element:<AllBankDetails/>
         }
       ]
     },
@@ -149,7 +155,10 @@ function App() {
       path:"/Failed",
       element:<><Navbar /><Failed/></>
     },
-    
+    {
+      path:"/Success",
+      element:<><Navbar /><Success/></>
+    },
   ])
   return (
     <>

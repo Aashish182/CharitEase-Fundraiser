@@ -41,6 +41,7 @@
 
 .filter-option{
     display: flex;
+    justify-content: space-between;
     background-color: #e6e9ecd8;
     padding-top: 5px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -52,6 +53,13 @@
     padding-top: 5px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter label{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-right: 15px;
 }
 
 .filter:hover{
@@ -68,15 +76,24 @@
     height: 25px;
 }
 
-.filter-button{
-    height: 25px;
-    transform: translateY(-20px);
-    background-color:   #e6e9ecd8;
+.button-filter button{
+    height: 28px;
+    background-color: #e6e9ecd8;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.button-filter button:hover{
+    background-color: #d3dae1d8;
 }
 
 .filter-button h6{
-    font-size: 20px;
-    transform: translateY(-12px);
+    font-size: 15px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
 }
 
 .main{

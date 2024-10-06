@@ -112,7 +112,7 @@ const deleteStory = async(id) => {
           <div className='organizer-section'>
             <h1 className='section-update-organizer'>Organizer</h1>
             <div className='organizer-info'>
-              <GoPeople size={35} />
+              <GoPeople size={35} color='#2ebc62' />
               <div className='organizer-details'>
                 <h1>{user?.email}</h1>
                 <h1>{user?.name}</h1>
@@ -125,7 +125,7 @@ const deleteStory = async(id) => {
               { storyData.length > 0 && 
                 storyData.map((Sdata, index) => (
                   <div key={index} className='update-item'>
-                    <GoPeople className='user-icon' size={30} />
+                    <GoPeople color='#2ebc62' className='user-icon' size={30} />
                     <div className='update-details'>
                       <div>{Sdata?.userId?.name}</div>
                       <div>{Sdata?.updateContent}</div>

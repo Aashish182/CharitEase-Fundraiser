@@ -90,6 +90,22 @@ const SummaryApi = {
         url: `${backendDomain}/api/delete-bank`,
         method: 'post'
     },
+    makeDonation: {
+        url: `${backendDomain}/api/make-donation`,
+        method: 'post'
+    },
+    allBank: {
+        url: `${backendDomain}/api/all-bank-detail`,
+        method: 'get'
+    },
+    donationDetail: {
+        url: `${backendDomain}/api/donation-detail`,
+        method: 'post'
+    },
+    campaignuser: {
+        url: `${backendDomain}/api/campaign-user`,
+        method: 'post'
+    },
 }
 
 

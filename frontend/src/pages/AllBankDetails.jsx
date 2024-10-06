@@ -1,23 +1,22 @@
-import './AllContacts.css'
 import React, { useEffect, useState } from 'react';
+import './AllBankDetails.css';
 import SummaryApi from '../common';
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 import { formatDate } from '../utils/dateFormator';
 
-const AllContacts = () => {
-    
-    const [allContacts,setAllContacts] = useState([]);
+const AllBankDetails = () => {
+    const [allBank,setAllBank] = useState([]);
 
-    const fetchAllContacts = async() =>{
-        const fetchData = await fetch(SummaryApi.allContact.url,{
-        method: SummaryApi.allContact.method,
+    const fetchAllBanks = async() =>{
+        const fetchData = await fetch(SummaryApi.allBank.url,{
+        method: SummaryApi.allBank.method,
         credentials: 'include'
         });
         const dataResponse = await fetchData.json();
         console.log("data",dataResponse)
         if(dataResponse.success){
         console.log("success")
-        setAllContacts(dataResponse.data)
+        setAllBank(dataResponse.data)
         }
         if(dataResponse.error){
         toast.error(dataResponse.message)
@@ -25,35 +24,35 @@ const AllContacts = () => {
     }
 
     useEffect(() => {
-        fetchAllContacts()
+        fetchAllBanks()
     },[])
 
     
 
     return (
         <div>
-        <table className='allusertable'>
+        <table className='allbanktable'>
             <thead>
             <tr>
                 <th className='srno'>Sr_No.</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th> Message </th>
-                <th>Sended On</th>
+                <th>Account Holder Name</th>
+                <th>Account Number</th>
+                <th>Mobile Number</th>
+                <th>IFSC Code</th>
+                <th>Added On</th>
             </tr>
             </thead>
             <tbody className='admintbody'>
-            { allContacts.length > 0 &&
-                allContacts.map((el,index) => {
+            { allBank.length > 0 &&
+                allBank.map((el,index) => {
                 return(
                     <tr key={el.id || index}>
                     <td>{index +1}</td>
-                    <td>{el.name}</td>
-                    <td>{el.email}</td>
-                    <td>{el.number}</td>
-                    <td>{el.message}</td>
-                    <td>{formatDate(el?.sendedAt)}</td>
+                    <td>{el.fullname}</td>
+                    <td>{el.accountnum}</td>
+                    <td>{el.mobilenum}</td>
+                    <td>{el.ifsc}</td>
+                    <td>{formatDate(el?.AddedAt)}</td>
                     </tr>
                 )
                 })
@@ -64,5 +63,4 @@ const AllContacts = () => {
     )
 }
 
-export default AllContacts
-
+export default AllBankDetails

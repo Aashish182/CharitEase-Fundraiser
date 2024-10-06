@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './DonatePage.css';
-import { FaArrowLeft } from "react-icons/fa6";
+import { FaArrowLeft, FaSpinner } from "react-icons/fa6";
 
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,15 +14,20 @@ const DonatePage = ({
     userId,
     campaign,
 }) => {
+    const [isSubmitting,setIsSubmitting] = useState(false);
     const user =useSelector(state => state?.user?.user)
 
     const navigate = useNavigate();
     const [data, setData] = useState({
+        campaignId:campaign?._id,
+        userId:user?._id,
         cardemail: user?.email,
         cardnumber:"",
         cardname:"",
         cardexp:"",
-        cardcvv:""
+        cardcvv:"",
+        amount: amount,
+        campaignimage:campaign?.image,
         
     });
     const handleChange = (e) => {
@@ -34,10 +39,13 @@ const DonatePage = ({
             }
         })
     };
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const dataResponse = await fetch(SummaryApi.createCampaign.url,{
-            method: SummaryApi.createCampaign.method,
+        setIsSubmitting(true);
+        setTimeout(async() => {
+        const dataResponse = await fetch(SummaryApi.makeDonation.url,{
+            method: SummaryApi.makeDonation.method,
             headers: {
                 "content-type":"application/json"
             },
@@ -46,14 +54,42 @@ const DonatePage = ({
         })
 
         const dataApi = await dataResponse.json();
-
+        
         if(dataApi.success){
-            navigate('/Donate');
+            toast.success("Your Donation is Successful!");
+            handleUpdateSubmit(e);
+            setIsSubmitting(false);
+            navigate('/Success');
         }
         if(dataApi.error){
             toast.error(dataApi?.message);
         }
+    },3000);
+    
     };
+
+const handleUpdateSubmit = async (e) => {
+    e.preventDefault();
+    const updatedRaisedAmount = (campaign.raisedAmount || 0)+ (data.amount || 0);
+
+    const updateData = {
+        ...campaign,
+        raisedAmount: updatedRaisedAmount,
+    };
+
+    const dataResponse = await fetch(SummaryApi.updateCampaign.url,{
+        method: SummaryApi.updateCampaign.method,
+        headers: {
+            "content-type":"application/json"
+        },
+        credentials : 'include',
+        body : JSON.stringify(updateData)
+    })
+
+    const dataApi = await dataResponse.json();
+};
+
+
 
 return (
     <div className='donatepage'>
@@ -63,7 +99,8 @@ return (
         <div className='donatecontainer'>
             <div className="donateleft">
                 <div className="donatecloseicon">
-                    <Link to={'/Failed'}><FaArrowLeft size={30} /></Link>
+                    <Link to={'/Failed'}><FaArrowLeft size={30} /> </Link>
+                        <>Donate Your Money For Someone Heart</>
                 </div>
                 <div className="donatecampaigndetail">
                     <h2>{campaign?.title}</h2>
@@ -134,7 +171,15 @@ return (
                         required
                     />
                     </div>
-                    <button type="submit">Pay Now</button>
+                    <button type="submit" onClick={handleSubmit}>
+                        {
+                            isSubmitting?(
+                                <span><FaSpinner className="spinner" />  Processing...</span>
+                            ):(
+                                <>Pay Now</>
+                            )
+                        }
+                        </button>
                 </form>
                 </div>
             </div>

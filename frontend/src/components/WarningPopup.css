@@ -1,7 +1,27 @@
 
+.popuppage{
+    transform: translate(-115px, -350px);
+    display: flex;
+    position: absolute;
+    background: rgb(237, 237, 237, .1);
+    backdrop-filter: blur(10px);
+    width: 1500px;
+    z-index: 10;
+    height: 700px;
+}
+
+.popuppagediv{
+    z-index: 10;
+    display: grid;
+    margin: 50px;
+    padding-left: 40px;
+    padding-right: 30px;
+    width: 1415px;
+    height: 550px;
+}
 
 .popup-overlay {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 50;
@@ -11,7 +31,7 @@
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px); 
 }
 
 .popup-content {

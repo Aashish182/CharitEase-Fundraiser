@@ -69,10 +69,10 @@ const Navbar = () => {
       }
 
         <ul>
-        <div className='search-box'>
+        {/* <div className='search-box'>
           <input type='text' placeholder='Search' />
           <FaSearch className='search'/>
-        </div>
+        </div> */}
         <div className="profile">
             {
               user?.name ? (

@@ -27,7 +27,7 @@ return (
                     <nav className='adminnav'>
                         <Link to={"AllUsers"} className={(e)=>{return e.isActive?"active-admin-action":"admin-action"}}><FaUser /> Users</Link>
                         <Link to={"AllCampaigns"} className={(e)=>{return e.isActive?"active-admin-action":"admin-action"}}><MdCampaign size={20}/> Campaigns</Link>
-                        <Link to={"AllContacts"} className={(e)=>{return e.isActive?"active-admin-action":"admin-action"}}><MdMessage size={20}/> Contacts</Link>
+                        <Link to={"AllContacts"} className={(e)=>{return e.isActive?"active-admin-action":"admin-action"}}><MdMessage size={20}/> Contacts Us</Link>
                         <Link to={"AllBankDetails"} className={(e)=>{return e.isActive?"active-admin-action":"admin-action"}}><BsBank2 size={20}/> Bank Details</Link>
                     </nav>
                 </div>

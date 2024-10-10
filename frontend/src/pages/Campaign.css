@@ -193,6 +193,7 @@
 .login-message {
     position: relative;
     margin-top: 20px;
+    width: 375px;
 }
 
 .login-overlay {

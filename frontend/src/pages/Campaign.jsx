@@ -126,8 +126,7 @@ const Campaign = () => {
         setLoading(false);
 
         const dataResponse = await response.json();
-        console.log("stiry",dataResponse?.data?.userId)
-        fetchUserData(dataResponse?.data?.userId);
+        fetchUserData(dataResponse?.data[0]?.userId);
         setDonationData(dataResponse.data);
     }
 

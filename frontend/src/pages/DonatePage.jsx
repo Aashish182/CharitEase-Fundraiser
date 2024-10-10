@@ -62,6 +62,7 @@ const DonatePage = ({
             navigate('/Success');
         }
         if(dataApi.error){
+            setIsSubmitting(false);
             toast.error(dataApi?.message);
         }
     },3000);
@@ -70,8 +71,8 @@ const DonatePage = ({
 
 const handleUpdateSubmit = async (e) => {
     e.preventDefault();
-    const updatedRaisedAmount = (campaign.raisedAmount || 0)+ (data.amount || 0);
-
+    const updatedRaisedAmount = (parseInt(campaign.raisedAmount, 10) || 0) + (parseInt(data.amount, 10) || 0);
+    console.log("update",updatedRaisedAmount);
     const updateData = {
         ...campaign,
         raisedAmount: updatedRaisedAmount,

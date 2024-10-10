@@ -29,6 +29,8 @@ const makeDonation = require('../controller/makeDonation');
 const allBankDetails = require('../controller/allBankDetails');
 const getDonationDetail = require('../controller/getDonationDetail');
 const campaignUser = require('../controller/campaignUser');
+const withdraw = require('../controller/withdraw');
+const changePassword = require('../controller/changePassword');
 
 router.post("/Register",userRegisterController);
 router.post("/Login",userLoginController);
@@ -77,6 +79,10 @@ router.get('/all-bank-detail',allBankDetails);
 router.post('/donation-detail',getDonationDetail);
 
 router.post('/campaign-user',campaignUser);
+
+router.post('/Withdraw',withdraw);
+
+router.post('/change-password',changePassword);
 
 
 

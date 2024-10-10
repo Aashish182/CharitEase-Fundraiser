@@ -65,20 +65,22 @@ const MyCampaign = () => {
             Manage My campaigns
           </h1>
         </div>
-        <div className='campaign-grid'>
-          {allCampaign.length > 0 && 
-            allCampaign.map((campaign, index) => (
-              <LoggedUserCampaignCard
-                key={index}
-                popupVisible={popupVisible}
-                setPopupVisible={setPopupVisible}
-                campaign={campaign}
-                index={index}
-                callFunc={fetchAllCampaignByUser}
-              /> 
-            
-            ))}
-            
+        <div className="campaign-cardgrid">
+          <div className='campaign-grid'>
+            {allCampaign.length > 0 && 
+              allCampaign.map((campaign, index) => (
+                <LoggedUserCampaignCard
+                  key={index}
+                  popupVisible={popupVisible}
+                  setPopupVisible={setPopupVisible}
+                  campaign={campaign}
+                  index={index}
+                  callFunc={fetchAllCampaignByUser}
+                /> 
+              
+              ))}
+              
+          </div>
         </div>
         <AddBankBanner />
       </div>

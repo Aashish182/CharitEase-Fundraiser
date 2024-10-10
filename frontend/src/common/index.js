@@ -106,6 +106,14 @@ const SummaryApi = {
         url: `${backendDomain}/api/campaign-user`,
         method: 'post'
     },
+    withdraw: {
+        url: `${backendDomain}/api/Withdraw`,
+        method: 'post'
+    },
+    changePassword: {
+        url: `${backendDomain}/api/change-password`,
+        method: 'post'
+    }
 }
 
 

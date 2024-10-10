@@ -33,6 +33,8 @@ const WarningPopup = ({ setPopupVisible, id, callFunc }) => {
     };
 
     return (
+        <div className="popuppage">
+        <div className="popuppagediv">
         <div className='popup-overlay'>
             <div className='popup-content'>
                 <div className="popupimage">
@@ -55,6 +57,8 @@ const WarningPopup = ({ setPopupVisible, id, callFunc }) => {
                     </button>
                 </div>
             </div>
+        </div>
+        </div>
         </div>
     );
 };

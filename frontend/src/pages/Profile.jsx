@@ -127,10 +127,10 @@ const Profile = () => {
             }
                 </div>
             </div>
-            <div className="profile-bank">
+            {/* <div className="profile-bank">
                 <h1 className='profile-section-title'>Payout History</h1>
                 <div className="profile-bank-content">
-                
+                 */}
                     {/* <div className='account-info'>
                         <span>Account Details</span>
                         <span className='account-details'>
@@ -156,13 +156,13 @@ const Profile = () => {
                 
             
                 
-                    <div className='no-account-header'>
+                    {/* <div className='no-account-header'>
                         No Payout History found
                     </div>
                 
             
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

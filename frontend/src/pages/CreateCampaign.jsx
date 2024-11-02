@@ -23,6 +23,19 @@ const CreateCampaign = () => {
       location: ''
     });
 
+    const [errors, setErrors] = useState({});
+    const validateInputs = () => {
+      const errors = {};
+      
+      if (!/^\d+$/.test(data.amount)) {
+          toast.error("Amount must be in digits.");
+          errors.password = "Amount must be in digits.";
+      }
+
+      setErrors(errors);
+      return Object.keys(errors).length === 0;
+    };
+
     const handleChange = (e) => {
         const { name , value } = e.target
         setData((preve)=>{
@@ -44,6 +57,10 @@ const CreateCampaign = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateInputs()) {
+          return;
+        }
+
         const dataResponse = await fetch(SummaryApi.createCampaign.url,{
             method: SummaryApi.createCampaign.method,
             headers: {
@@ -99,7 +116,7 @@ const CreateCampaign = () => {
               <input
                 type="number"
                 className="form-input"
-                placeholder='3000$'
+                placeholder='3000₹'
                 name='amount' value={data.amount} onChange={handleChange} required
               />
             </div>

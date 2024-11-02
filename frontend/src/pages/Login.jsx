@@ -19,6 +19,20 @@ const Login = () => {
         password: ''
     });
 
+    const [errors, setErrors] = useState({});
+
+    const validateInputs = () => {
+        const errors = {};
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(data.email)) {
+            toast.error("Please enter a valid email address.");
+            errors.password = "Please enter a valid email address.";
+        }
+
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+
     const handleChange = (e) => {
         const { name , value } = e.target
         setData((preve)=>{
@@ -33,6 +47,10 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateInputs()) {
+            return;
+        }
+
         const dataResponse = await fetch(SummaryApi.login.url,{
             method: SummaryApi.login.method,
             credentials: 'include',

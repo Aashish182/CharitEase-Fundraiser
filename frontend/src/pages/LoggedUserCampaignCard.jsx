@@ -6,6 +6,15 @@ import WarningPopup from '../components/WarningPopup';
 
 const LoggedUserCampaignCard = ({ campaign, index, callFunc }) => {
     const [popupVisible, setPopupVisible] = useState(false); 
+    const [popupPosition, setPopupPosition] = useState({});
+
+    const handleMouseEnter = (event) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        setPopupPosition({
+            top: rect.top + window.scrollY + 20, 
+            left: rect.left + window.scrollX
+        });
+    };
 
     return (
         <div className="card-campaign">
@@ -25,11 +34,16 @@ const LoggedUserCampaignCard = ({ campaign, index, callFunc }) => {
                         </Link>
                         <div
                             onClick={() => setPopupVisible(true)} 
+                            onMouseEnter={handleMouseEnter}
                             className='complete-button'>
                             Mark Completed
                         </div>
                         {popupVisible && (
-                            <WarningPopup setPopupVisible={setPopupVisible} id={campaign?._id} callFunc={callFunc} />
+                            <WarningPopup 
+                            setPopupVisible={setPopupVisible} 
+                            id={campaign?._id} 
+                            callFunc={callFunc} 
+                            />
                         )}
                     </div>
                     <div className='stats'>

@@ -6,7 +6,7 @@ import SummaryApi from '../common';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-const WarningPopup = ({ setPopupVisible, id, callFunc }) => {
+const WarningPopup = ({ setPopupVisible, id, callFunc, style }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
@@ -33,7 +33,7 @@ const WarningPopup = ({ setPopupVisible, id, callFunc }) => {
     };
 
     return (
-        <div className="popuppage">
+        <div className="popuppage" >
         <div className="popuppagediv">
         <div className='popup-overlay'>
             <div className='popup-content'>

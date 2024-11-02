@@ -19,6 +19,35 @@ const Contact = () => {
         message: "",
     });
 
+    const [errors, setErrors] = useState({});
+    const [pstatus, setPstatus] = useState(false);
+
+    const validateInputs = () => {
+        const errors = {};
+
+        
+        if (!/^[A-Za-z\s]{2,}$/.test(data.name)) {
+            toast.error("Name must be at least 2 characters and contain only letters.");
+            errors.password = "Name must be at least 2 characters and contain only letters.";
+        }
+
+        
+        if (!/^[6-9]\d{9}$/.test(data.number)) {
+            toast.error("Phone number must be 10 digits.");
+            errors.password = "Phone number must be 10 digits.";
+        }
+
+        
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(data.email)) {
+            toast.error("Please enter a valid email address.");
+            errors.password = "Please enter a valid email address.";
+        }
+
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+
     const handleChange = (e) => {
         const { name , value } = e.target
         setData((preve)=>{
@@ -31,6 +60,10 @@ const Contact = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateInputs()) {
+            return;
+        }
+
         const dataResponse = await fetch(SummaryApi.contactDetail.url,{
             method: SummaryApi.contactDetail.method,
             headers: {

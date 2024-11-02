@@ -1,13 +1,14 @@
 const uploadCampiagnPermission = require("../helper/permission");
 const userModel = require("../models/userModel");
+const bcrypt = require('bcrypt');
 
 
 async function changePassword(req,res) {
     const { email, oldPassword, newPassword } = req.body;
 
     try {
-        // Find user by email
-        const user = await User.findOne({ email });
+        
+        const user = await userModel.findOne({ email });
         if (!user) {
             return res.status(404).json({ success: false, message: 'User not found' });
         }

@@ -44,7 +44,10 @@ const Campaign = () => {
     };
 
     const openDonate=(amount) => {
-        if (!amount) {
+    
+        if (!/^\d+$/.test(amount)) {
+            toast.error("Amount must be in digits.");
+        } else if (!amount) {
             toast.error("Please provide a donation amount.");
         } else if (amount < 20) {
             toast.error("Minimum contribution is ₹20.");
@@ -69,6 +72,8 @@ const Campaign = () => {
         raisedAmount:"",
         createdBy:"",
     })
+
+
 
     const params = useParams();
     console.log(campaign?.title);

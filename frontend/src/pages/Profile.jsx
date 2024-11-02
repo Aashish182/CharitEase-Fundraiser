@@ -105,7 +105,15 @@ const Profile = () => {
                             {bank?.fullname}
                         </span>
                     </div>
-                    </>) })
+                    <div className='no-account-header'>
+                        Add More Account
+                        <button  className='add-account-btn' onClick={() => setOpenUpdateRole(true)}  >
+                            Add account
+                        </button>
+                    </div>
+                    </>
+                ) })
+                    
                 ) : (
                 <>
                     <div className='no-account-header'>
@@ -122,6 +130,7 @@ const Profile = () => {
                         />
                         )
                     }
+                    
                 </>
                 )
             }

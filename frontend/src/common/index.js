@@ -1,5 +1,5 @@
 
-const backendDomain = "https://charit-ease-fundraiser.vercel.app";
+const backendDomain = "http://localhost:8080";
 
 const SummaryApi = {
     register :{

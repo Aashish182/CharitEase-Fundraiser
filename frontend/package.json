@@ -1,6 +1,5 @@
 {
-  "homepage": "https://Aashish182.github.io/CharitEase-Fundraiser",
-  "name": "frontend",
+  "name": "my-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

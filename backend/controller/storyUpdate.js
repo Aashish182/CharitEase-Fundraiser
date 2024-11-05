@@ -4,13 +4,6 @@ const storyUpdateModel = require("../models/storyUpdateModel");
 
 async function storyUpdate(req,res) {
     try{
-
-        // const sessioUserId = req.userId
-
-        // if(!uploadCampiagnPermission(sessioUserId)){
-        //     throw new Error("Permission Denied, First Login!");
-        // }
-
         const { userId, campaignId, updateContent} = req.body;
 
         if(!userId){

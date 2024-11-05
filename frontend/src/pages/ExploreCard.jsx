@@ -1,15 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './ExploreCard.css';
-import {Link, NavLink, useNavigate, useParams } from 'react-router-dom';
+import {Link, useParams } from 'react-router-dom';
 import { FaHeart } from "react-icons/fa";
-import { BsLightningCharge } from "react-icons/bs";
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import SummaryApi from '../common';
-import Context from '../context';
-
-
-
 
 const ExploreCard = ({data}) => {
     const params = useParams();

@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
@@ -10,14 +10,13 @@ import Donate from './pages/Donate';
 import Works from './pages/Works';
 import {CreateCampaign} from './pages/CreateCampaign';
 import Loader from './components/Loader';
-import { Profiler, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SummaryApi from './common';
 import Context from './context';
 import { useDispatch } from 'react-redux';
 import { setUserDetails } from './store/userSlice';
-import {setCampaignDetails} from './store/campaignSlice';
 import Profile from './pages/Profile';
 import Campaign from './pages/Campaign';
 import MyCampaign from './pages/MyCampaign';
@@ -37,7 +36,6 @@ import AllBankDetails from './pages/AllBankDetails';
 
 
 function App() {
-  const [username, setUsername] = useState('');
   const dispatch = useDispatch();
 
   const fetchUserDetails = async() => {

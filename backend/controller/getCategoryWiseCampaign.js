@@ -1,5 +1,3 @@
-
-
 const campaignModel = require("../models/campaignModel");
 const getCategoryWiseCampaign = async(req,res) => {
     try{
@@ -12,7 +10,6 @@ const getCategoryWiseCampaign = async(req,res) => {
             success: true,
             error: false
         })
-
     } catch(err){
         res.status(400).json({
             message: err.message || err,
@@ -21,5 +18,4 @@ const getCategoryWiseCampaign = async(req,res) => {
         })
     }
 }
-
 module.exports = getCategoryWiseCampaign;

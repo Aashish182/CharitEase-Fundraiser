@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import "./Login.css";
 import { FaUserAlt, FaEye, FaEyeSlash } from "react-icons/fa";
-import { useState,useEffect } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import loginimg from "../asset/images/login.jpg";
 import SummaryApi from "../common";
 import { toast } from "react-toastify";
@@ -114,7 +114,7 @@ const Login = () => {
             <input type="checkbox" />
             Remeber Me
             </label>
-            <a>
+            <a href="#">
                 <Link className='forgot' to='/ForgetPassword'>Forgot Password</Link>
             </a>
         </div>

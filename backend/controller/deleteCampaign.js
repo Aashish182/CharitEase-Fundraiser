@@ -3,7 +3,6 @@ const campaignModel = require("../models/campaignModel")
 const deleteCampaign = async(req,res) =>{
     try{
         const {campaignId} = req.body;
-        console.log("id",campaignId);
         
         const campaign = await campaignModel.findByIdAndDelete(campaignId);
 

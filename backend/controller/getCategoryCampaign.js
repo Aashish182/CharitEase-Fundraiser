@@ -3,10 +3,6 @@ const campaignModel = require("../models/campaignModel")
 const getCategoryCampaign = async(req,res) => {
     try{
         const campaignCategory = await campaignModel.distinct("category");
-
-        console.log("category",campaignCategory);
-
-        //array to store campaign from each category
         const campaignByCategory = []
 
         for(const category of campaignCategory){

@@ -20,7 +20,6 @@ const Contact = () => {
     });
 
     const [errors, setErrors] = useState({});
-    const [pstatus, setPstatus] = useState(false);
 
     const validateInputs = () => {
         const errors = {};

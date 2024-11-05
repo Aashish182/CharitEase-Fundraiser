@@ -2,16 +2,13 @@
 import './MyCampaign.css';
 import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import AddBankBanner from '../components/AddBankBanner';
 import SummaryApi from '../common';
 import LoggedUserCampaignCard from './LoggedUserCampaignCard';
 
 const MyCampaign = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { userId } = useParams();
+
   const params = useParams();
   console.log("param",params)
   

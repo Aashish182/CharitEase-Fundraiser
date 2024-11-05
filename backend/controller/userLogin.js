@@ -3,8 +3,6 @@ const bcrypt = require('bcrypt');
 const userModel = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 
-
-
 async function userLoginController(req,res) {
     try{
         const { email, password } = req.body;
@@ -23,7 +21,6 @@ async function userLoginController(req,res) {
     }
 
     const checkPassword = await bcrypt.compare(password,user.password);
-    console.log("checkpassword",checkPassword);
 
     if(checkPassword){
         const tokenData ={

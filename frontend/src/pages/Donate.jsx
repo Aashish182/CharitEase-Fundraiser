@@ -1,20 +1,13 @@
-
-
-
 import React, { useEffect, useState } from 'react';
 import { ExploreCard } from './ExploreCard';
 import './Donate.css';
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import SummaryApi from '../common';
 import Footer from '../components/Footer';
 import Banner from './Banner';
 import category from '../utils/categorydata';
 
 const Donate = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const [allCampaign, setAllCampaign] = useState([]);
     const [filteredCampaigns, setFilteredCampaigns] = useState([]);

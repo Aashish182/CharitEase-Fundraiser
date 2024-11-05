@@ -154,7 +154,7 @@ const DonatePage = ({
             body: JSON.stringify(updateData)
         });
 
-        const dataApi = await dataResponse.json();
+        // const dataApi = await dataResponse.json();
     };
 
     return (

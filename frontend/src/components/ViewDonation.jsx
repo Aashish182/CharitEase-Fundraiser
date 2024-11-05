@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Footer from './Footer';
 import './ViewDonation.css';
-import { useParams, Link } from 'react-router-dom';
-import { HiOutlineExternalLink } from 'react-icons/hi';
+import { useParams } from 'react-router-dom';
 import { formatDate } from '../utils/dateFormator';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';

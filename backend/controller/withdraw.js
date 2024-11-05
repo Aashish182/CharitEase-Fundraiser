@@ -7,7 +7,6 @@ async function withdraw(req,res) {
 
         const withdrawdata = new withdrawModel(req.body);
         const withdraw = await withdrawdata.save();
-        console.log("hi",withdraw);
 
         res.status(201).json({
             data: withdraw,

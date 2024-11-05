@@ -3,7 +3,6 @@ const storyUpdateModel = require("../models/storyUpdateModel")
 const deleteStory = async(req,res) =>{
     try{
         const {storyId} = req.body;
-        console.log("id",storyId);
         
         const campaign = await storyUpdateModel.findByIdAndDelete(storyId);
 

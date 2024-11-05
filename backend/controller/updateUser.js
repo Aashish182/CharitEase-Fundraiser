@@ -11,11 +11,6 @@ async function updateUser(req,res) {
             ...( role && { role})
         }
 
-        console.log("role",role)
-
-        // const user = await userModel.findById(sessionUser);
-        // console.log("user-role",user.role);
-        
         const updatedUser = await userModel.findByIdAndUpdate(userId, payload, {
             new: true, 
             runValidators: true 

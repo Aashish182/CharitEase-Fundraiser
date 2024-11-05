@@ -1,9 +1,8 @@
 import React from 'react';
 import './Navbar.css';
-import { useState,useEffect } from 'react';
-import { Link,NavLink,useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { NavLink,useNavigate } from 'react-router-dom';
 import logo from '../asset/images/logo.png';
-import { FaSearch } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import SummaryApi from '../common';

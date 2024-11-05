@@ -1,20 +1,16 @@
 
 import React, { useEffect, useState } from 'react';
 import './Campaign.css';
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Link, useParams } from 'react-router-dom';
-import Loader from '../components/Loader';
+import { useParams } from 'react-router-dom';
 import { FaHeart } from "react-icons/fa";
 import { GiFlowerPot } from "react-icons/gi";
 import { LuClock3 } from "react-icons/lu";
 import { GoGoal, GoPeople } from "react-icons/go";
 import { useDispatch, useSelector } from 'react-redux';
-import { formatDate, formatTime } from '../utils/dateFormator';
+import { formatDate } from '../utils/dateFormator';
 import { MdOutlineReportGmailerrorred } from "react-icons/md";
-import img from '../asset/images/blog.jpeg';
 import SummaryApi from '../common';
-import { FaRupeeSign } from "react-icons/fa";
 import Story from '../components/Story';
 import DonatePage from './DonatePage';
 import { toast } from 'react-toastify';
@@ -22,10 +18,9 @@ import DonationList from '../components/DonationList';
 
 
 const Campaign = () => {
-    const { id } = useParams();
     const [openTab, setOpenTab] = useState(1);
     const [openDonateTab, setOpenDonateTab] = useState(false);
-    const dispatch = useDispatch();
+    
     const user =useSelector(state => state?.user?.user);
     const campaign =useSelector(state => state?.campaign?.campaign)
     

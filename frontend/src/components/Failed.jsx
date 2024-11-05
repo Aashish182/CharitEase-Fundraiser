@@ -1,4 +1,4 @@
-// Failed.jsx
+
 import React from 'react';
 import warning from '../asset/images/warning.png';
 import Footer from './Footer';

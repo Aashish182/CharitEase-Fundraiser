@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './ManageCampaign.css';
 import Footer from '../components/Footer';
 import CampaignUpdates from '../components/CampaignUpdate';

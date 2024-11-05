@@ -1,5 +1,4 @@
-import React from 'react'
-import { LuClock3 } from "react-icons/lu";
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { GoPeople } from "react-icons/go";
 import blogimg from '../asset/images/blog.jpeg';

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Profile.css';
 import { Link } from 'react-router-dom';
 import { FaStarOfLife } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { VscTrash } from 'react-icons/vsc';
 import AddBankAccount from '../components/AddBankAccount';
 import SummaryApi from '../common';
@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 const Profile = () => {
 
     const [openUpdateRole,setOpenUpdateRole] = useState(false)
-    const dispatch = useDispatch();
+    
     const user =useSelector(state => state?.user?.user);
     
     const[allBank,setAllBank] = useState([]);

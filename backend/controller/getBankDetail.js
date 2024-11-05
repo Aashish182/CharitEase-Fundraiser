@@ -3,7 +3,6 @@ const bankModel = require("../models/bankModel");
 const getBankDetail = async(req,res) =>{
     try{
         const {userId} = req.body;
-        console.log("userId",userId);
         
         const bankdetail = await bankModel.find({bankuser: userId});
         
@@ -22,12 +21,6 @@ const getBankDetail = async(req,res) =>{
             success : true,
             error : false
         })
-        // res.json({
-        //     data : bankdetail,
-        //     message : "ok",
-        //     success : true,
-        //     error : false
-        // })
 
     } catch(err) {
         res.json({

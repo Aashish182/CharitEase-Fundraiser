@@ -3,7 +3,6 @@ const donationModel = require("../models/donationModel");
 const getDonationDetail = async(req,res) =>{
     try{
         const {campaignId} = req.body;
-        console.log("userId",campaignId);
         
         const donationdetail = await donationModel.find({campaignId: campaignId});
         

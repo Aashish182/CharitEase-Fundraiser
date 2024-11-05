@@ -4,13 +4,6 @@ const donationModel = require("../models/donationModel");
 
 async function makeDonation(req,res) {
     try{
-
-        // const sessioUserId = req.userId;
-
-        // if(!uploadCampiagnPermission(sessioUserId)){
-        //     throw new Error("Permission Denied, First Login!");
-        // }
-
         const { cardemail, cardnumber, cardname, cardexp, cardcvv, amount, campaignimage} = req.body;
         
         if(!cardemail){
@@ -34,10 +27,7 @@ async function makeDonation(req,res) {
         if(!campaignimage){
             throw new Error("Please Provide campaignimage")
         }
-
-
         const donationData = new donationModel(req.body);
-        console.log(donationData)
         const saveDonation = await donationData.save()
 
         res.status(201).json({

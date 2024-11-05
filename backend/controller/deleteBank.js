@@ -3,8 +3,6 @@ const bankModel = require("../models/bankModel");
 const deleteBank = async(req,res) =>{
     try{
         const {bankId} = req.body;
-        console.log("id",bankId);
-        
         const bank = await bankModel.findByIdAndDelete(bankId);
 
         res.json({

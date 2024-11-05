@@ -1,6 +1,6 @@
 import React from 'react';
 import { GiLifeSupport } from 'react-icons/gi'
-import { formatDate, formatTime } from '../utils/dateFormator';
+import { formatDate } from '../utils/dateFormator';
 import './DonationList.css'; 
 
 const DonationList = ({ donation,user }) => {

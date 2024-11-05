@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-import {Link, NavLink} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import CountUp from 'react-countup';
 import countimg from '../asset/images/home-count2.avif';
 import campaign from '../asset/images/campaign1.png';
@@ -10,7 +10,6 @@ import Fraq from './Fraq';
 import Footer from '../components/Footer';
 import Banner from './Banner';
 import BlogGrid from './BlogGrid';
-import CategoryList from '../components/CategoryList';
 import { useSelector } from 'react-redux';
 import { toast } from "react-toastify";
 import DonateCampaignHome from '../components/DonateCampaignHome';
@@ -48,17 +47,17 @@ const Home = () => {
           <img src={countimg} alt='' />
           <div className='count-up'>
             <div className="counting">
-              <h4 className='count-0'><h1 className='dot'></h1>We funded over</h4>
+              <h4 className='count-0'><h1 className='dot'> </h1>We funded over</h4>
               <h2 className='count-1'><CountUp start={100} end={1200} duration={2}/>+ projects</h2>
               <p className='count-2'>we have sucessfully funded over 1200 projects</p>
             </div>
             <div className="counting-1">
-              <h4 className='count-3'><h1 className='dot-1'></h1>We raised over</h4>
+              <h4 className='count-3'><h1 className='dot-1'> </h1>We raised over</h4>
               <h2 className='count-4'>₹<CountUp start={0} end={50000} duration={2} />+ </h2>
               <p className='count-5'>we have sucessfully raised over 50000 dollars in funds</p>
             </div>
             <div className="counting-2">
-              <h4 className='count-6'><h1 className='dot-2'></h1>We have support of</h4>
+              <h4 className='count-6'><h1 className='dot-2'> </h1>We have support of</h4>
               <h2 className='count-7'><CountUp start={0} end={12} duration={2}/>K+ backers</h2>
               <p className='count-8'>we have huge number of supporters who are willing to help you</p>
             </div>

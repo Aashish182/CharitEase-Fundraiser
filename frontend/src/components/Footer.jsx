@@ -22,7 +22,7 @@ return (
                 </div>
                 <div className="footer-links">
                     <NavLink className='text-1' to='/Works'>How it works</NavLink>
-                    <NavLink className='text-1' to='/About'>Why CharitEase</NavLink>
+                    <NavLink className='text-1' to='/Contact'>Why CharitEase</NavLink>
                     <NavLink className='text-1' to='/Fraq'>Common Questions</NavLink>
                     <NavLink className='text-1' to='/Contact'>Help Center</NavLink>
                     <NavLink className='text-1' to='/Blog'>Blog</NavLink>

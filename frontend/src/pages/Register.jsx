@@ -41,8 +41,8 @@ const Register = () => {
             errors.password = "Please enter a valid email address.";
         }
 
-        
-        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(data.password)) {
+        const pass =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!pass.test(data.password)) {
             toast.error("Password must be at least 6 characters, with at least one letter and one number.");
             errors.password = "Password must be at least 6 characters, with at least one letter and one number.";
         }

@@ -42,7 +42,7 @@ const Register = () => {
         }
 
         
-        if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(data.password)) {
+        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(data.password)) {
             toast.error("Password must be at least 6 characters, with at least one letter and one number.");
             errors.password = "Password must be at least 6 characters, with at least one letter and one number.";
         }

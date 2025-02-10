@@ -37,7 +37,7 @@ import AllBankDetails from './pages/AllBankDetails';
 
 function App() {
   const dispatch = useDispatch();
-
+  const [userDetails, setUserDetails] = useState(null);
   const fetchUserDetails = async() => {
     const dataResponse = await fetch(SummaryApi.current_user.url,{
       method: SummaryApi.current_user.method,

@@ -14,6 +14,7 @@ const Navbar = () => {
   const [menuDisplay,setMenuDisplay] = useState(false);
   const dispatch = useDispatch();
   const [isHovered, setIsHovered] = useState(false);
+  const [userDetails, setUserDetails] = useState(null);
 
   const handleMouseEnter = () => {
     setIsHovered(true);

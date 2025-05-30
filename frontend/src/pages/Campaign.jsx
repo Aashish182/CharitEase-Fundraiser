@@ -247,7 +247,7 @@ const Campaign = () => {
                                 <h1 className='stat-label'><GiFlowerPot className='flower-pot' color='#2ebc62' /> Min. Contribution</h1>
                             </div>
                             <div className='campaign-stat'>
-                                <h1 className='stat-value'>{formatDate(user?.createdAt)}</h1>
+                                <h1 className='stat-value'>{formatDate(data?.createdAt)}</h1>
                                 <h1 className='stat-label'><LuClock3 className='lock' color='#2ebc62' /> Created at</h1>
                             </div>
                         </div>

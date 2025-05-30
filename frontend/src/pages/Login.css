@@ -59,11 +59,9 @@
     color: #0b0b0b;
 }
 .input-box .icon{
-    position: absolute;
-    right: 20px;
+    width: auto;
     height: 25px;
-    top: 50%;
-    transform: translateY(-50%);
+    transform: translate3d(0px, -14px, 0px);
     font-size: 16px;
 }
 .forgot{

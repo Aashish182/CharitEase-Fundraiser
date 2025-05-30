@@ -38,7 +38,7 @@ const Profile = () => {
                 "content-type" : "application/json"
             },
             body : JSON.stringify({
-                    bankId : id
+                bankId : id
             })
         });
 

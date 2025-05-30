@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
 import { setUserDetails } from '../store/userSlice';
+import { clearUserDetails } from '../store/userSlice';
+
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const Navbar = () => {
     setIsHovered(false);
   };
 
-  const user =useSelector(state => state?.user?.user)
+  const user = useSelector((state) => state?.user?.user);
 
   
   const handleLogout = async() => {
@@ -37,7 +39,7 @@ const Navbar = () => {
 
     if(data.success){
       toast.success(data.message);
-      dispatch(setUserDetails(null));
+      dispatch(clearUserDetails());
       setMenuDisplay(false);
       navigate('/');
   }
@@ -73,7 +75,7 @@ const Navbar = () => {
           <input type='text' placeholder='Search' />
           <FaSearch className='search'/>
         </div> */}
-        <div className="profile">
+        <div className={(e)=>{return e.isActive?"active":"non"}}>
             {
               user?.name ? (
                 <li className='username' onClick={() => setMenuDisplay(preve => !preve)} 
